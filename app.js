@@ -27,36 +27,68 @@ function populate_board(){
 var move; var chosen=false; var prev;
 function select(i){
     if(!chosen){
-        if(arr[i]>0){
+        if(arr[i]>0 || arr[i]<0){
             document.getElementById("box_"+i).style.backgroundColor="yellow";
         }
 
-        if(arr[i]==1){
+        if(arr[i]==1||arr[i]==-1){
             move=pawn(i);
         }
-        else if(arr[i]==4){
-            move=rook(i);
+        else if(arr[i]==4||arr[i]==-4){
+            if(arr[i]<0){
+                arr=mirror_arr(arr);
+                move=rook(i);
+                arr=mirror_arr(arr);
+            }
+            else{
+                move=rook(i);
+            }
         }
-        else if(arr[i]==2){
-            move=bishop(i);
+        else if(arr[i]==2||arr[i]==-2){
+            if(arr[i]<0){
+                arr=mirror_arr(arr);
+                move=bishop(i);
+                arr=mirror_arr(arr);
+            }
+            else{
+                move=bishop(i);
+            }
         }
-        else if(arr[i]==5){
-            move=queen(i);
+        else if(arr[i]==5||arr[i]==-5){
+            if(arr[i]<0){
+                arr=mirror_arr(arr);
+                move=queen(i);
+                arr=mirror_arr(arr);
+            }
+            else{
+                move=queen(i);
+            }
         }
-        else if(arr[i]==3){
-            move=knight(i);
+        else if(arr[i]==3||arr[i]==-3){
+            if(arr[i]<0){
+                arr=mirror_arr(arr);
+                move=knight(i);
+                arr=mirror_arr(arr);
+            }
+            else{
+                move=knight(i);
+            }
         }
-        else if(arr[i]==6){
-            move=king(i);
+        else if(arr[i]==6||arr[i]==-6){
+            if(arr[i]<0){
+                arr=mirror_arr(arr);
+                move=king(i);
+                arr=mirror_arr(arr);
+            }
+            else{
+                move=king(i);
+            }
         }
         chosen=true;
         prev=i;
 
         for(j=0;j<move.length;j++){
             document.getElementById("box_"+move[j]).style.backgroundColor="cyan";
-            if(arr[move[j]]<0){
-                document.getElementById("box_"+move[j]).style.backgroundColor="magenta";
-            }
         }
     }
     else{
@@ -455,4 +487,11 @@ function king(i){
         arr2.push(i-7);
     }
     return arr2;
+}
+function mirror_arr(a){
+    var t;
+    for(t=0;t<64;t++){
+        a[t]=-1*a[t];
+    }
+    return a;
 }

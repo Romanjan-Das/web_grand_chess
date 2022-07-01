@@ -22,7 +22,6 @@ function populate_board(){
 }
 var move; var chosen=false; var prev;
 function select(i){
-    var l=0;
     if(!chosen){
         if(arr[i]>0 && i!=prev){
             document.getElementById("box_"+i).style.backgroundColor="yellow";
@@ -30,34 +29,24 @@ function select(i){
 
         if(arr[i]==1){
             move=pawn(i);
-            chosen=true;
-            prev=i;
         }
         else if(arr[i]==4){
             move=rook(i);
-            chosen=true;
-            prev=i;
         }
         else if(arr[i]==2){
             move=bishop(i);
-            chosen=true;
-            prev=i;
         }
         else if(arr[i]==5){
             move=queen(i);
-            chosen=true;
-            prev=i;
         }
         else if(arr[i]==3){
             move=knight(i);
-            chosen=true;
-            prev=i;
         }
         else if(arr[i]==6){
             move=king(i);
-            chosen=true;
-            prev=i;
         }
+        chosen=true;
+        prev=i;
 
         for(j=0;j<move.length;j++){
             document.getElementById("box_"+move[j]).style.backgroundColor="cyan";
@@ -65,35 +54,61 @@ function select(i){
     }
     else{
         var k=0;
-        for(k=0;k<move.length;k++){
-            if(i==move[k]){
-                chosen=false;
-                arr[i]=arr[prev];
-                arr[prev]=0;
-                for(l=0;l<64;l++){
-                    document.getElementById("box_"+l).style.backgroundColor="transparent";
+        if(move.length==0){
+            reset_board_colours();
+            chosen=false;
+        }
+        else{
+            for(k=0;k<move.length;k++){
+                if(i==move[k]){
+                    arr[i]=arr[prev];
+                    arr[prev]=0;
+                    reset_board_colours();
+                    populate_board();
+                    chosen=false;
+                    move=[];
+                    break;
                 }
-                populate_board();
-                break;
-            }
-            else if(i==prev){
-                for(l=0;l<64;l++){
-                    document.getElementById("box_"+l).style.backgroundColor="transparent";
+                else if(i==prev){
+                    reset_board_colours();
+                    chosen=false;
+                    move=[];
                 }
-                chosen=false;
             }
         }
-
     }
 
 }
+function reset_board_colours(){
+    var l;
+    for(l=0;l<64;l++){
+        document.getElementById("box_"+l).style.backgroundColor="transparent";
+    }
+}
 function pawn(i){
-    if(i>47){
-        return [i-8,i-16];
+    if(arr[i]>0){
+        if(i>47){
+            return [i-8,i-16];
+        }
+        else if(i>7){
+            return [i-8];
+        }
+        else{
+            return [];
+        }
     }
-    else{
-        return [i-8];
+    else if(arr[i]<0){
+        if(i<16){
+            return [i+8,i+16];
+        }
+        else if(i<56){
+            return [i+8];
+        }
+        else{
+            return [];
+        }
     }
+
 }
 function rook(i){
     var arr2=[];

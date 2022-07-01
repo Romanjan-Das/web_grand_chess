@@ -183,28 +183,64 @@ function bishop(i){
     var j=i;
     while(j>-1 && j%8!=0 && j-9>-1){
         if(j>-1 && j%8!=0){
-            arr2.push(j-9);
+            if(arr[j-9]>0){
+                break;
+            }
+            else if(arr[j-9]<0){
+                arr2.push(j-9);
+                break;
+            }
+            else{
+                arr2.push(j-9);
+            }
         }
         j=j-9;
     }
     j=i;
     while(j>-1 && (j+1)%8!=0 && j-7>-1){
         if(j>-1 && (j+1)%8!=0){
-            arr2.push(j-7);
+            if(arr[j-7]>0){
+                break;
+            }
+            else if(arr[j-7]<0){
+                arr2.push(j-7);
+                break;
+            }
+            else{
+                arr2.push(j-7);
+            }
         }
         j=j-7;
     }
     j=i;
     while(j<64 && j%8!=0 && j+7<64){
         if(j<64 && j%8!=0){
-            arr2.push(j+7);
+            if(arr[j+7]>0){
+                break;
+            }
+            else if(arr[j+7]<0){
+                arr2.push(j+7);
+                break;
+            }
+            else{
+                arr2.push(j+7);
+            }
         }
         j=j+7;
     }
     j=i;
     while(j<64 && (j+1)%8!=0 && j+9<64){
         if(j<64 && j%8!=0){
-            arr2.push(j+9);
+            if(arr[j+9]>0){
+                break;
+            }
+            else if(arr[j+9]<0){
+                arr2.push(j+9);
+                break;
+            }
+            else{
+                arr2.push(j+9);
+            }
         }
         j=j+9;
     }

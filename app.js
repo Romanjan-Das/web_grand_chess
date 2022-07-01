@@ -94,22 +94,42 @@ function reset_board_colours(){
 }
 function pawn(i){
     var arr2=[];
-    if(i>47 && arr[i-16]==0 && arr[i-8]==0){
-        arr2=[i-8,i-16];
+    if(arr[i]>0){   
+        if(i>47 && arr[i-16]==0 && arr[i-8]==0){
+            arr2=[i-8,i-16];
+        }
+        else if(i>7 && arr[i-8]==0){
+            arr2=[i-8];
+        }
+        else{
+            arr2=[];
+        }
+        if(arr[i-7]<0){
+            arr2.push(i-7);
+        }
+        if(arr[i-9]<0){
+            arr2.push(i-9);
+        }
+        return arr2;
     }
-    else if(i>7 && arr[i-8]==0){
-        arr2=[i-8];
+    else if(arr[i]<0){
+        if(i<16 && arr[i+16]==0 && arr[i+8]==0){
+            arr2=[i+8,i+16];
+        }
+        else if(i<56 && arr[i+8]==0){
+            arr2=[i+8];
+        }
+        else{
+            arr2=[];
+        }
+        if(arr[i+7]<0){
+            arr2.push(i+7);
+        }
+        if(arr[i+9]<0){
+            arr2.push(i+9);
+        }
+        return arr2;
     }
-    else{
-        arr2=[];
-    }
-    if(arr[i-7]<0){
-        arr2.push(i-7);
-    }
-    if(arr[i-9]<0){
-        arr2.push(i-9);
-    }
-    return arr2;
 }
 function rook(i){
     var arr2=[];

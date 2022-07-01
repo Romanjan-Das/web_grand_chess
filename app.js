@@ -136,10 +136,10 @@ function pawn(i){
         else{
             arr2=[];
         }
-        if(arr[i-7]<0){
+        if(arr[i-7]<0 && (i+1)%8!=0){
             arr2.push(i-7);
         }
-        if(arr[i-9]<0){
+        if(arr[i-9]<0 && i%8!=0){
             arr2.push(i-9);
         }
         return arr2;
@@ -154,10 +154,10 @@ function pawn(i){
         else{
             arr2=[];
         }
-        if(arr[i+7]<0){
+        if(arr[i+7]>0 && i%8!=0){
             arr2.push(i+7);
         }
-        if(arr[i+9]<0){
+        if(arr[i+9]>0 && (i+1)%8!=0){
             arr2.push(i+9);
         }
         return arr2;

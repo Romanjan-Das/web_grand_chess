@@ -230,7 +230,7 @@ function bishop(i){
     }
     j=i;
     while(j<64 && (j+1)%8!=0 && j+9<64){
-        if(j<64 && j%8!=0){
+        if(j<64 && (j+1)%8!=0){
             if(arr[j+9]>0){
                 break;
             }
@@ -251,59 +251,132 @@ function queen(i){
     var j=i;
     while(j>-1){
         if(j-8>-1){
-            arr2.push(j-8);
+            if(arr[j-8]>0){
+                break;
+            }
+            else if(arr[j-8]<0){
+                arr2.push(j-8);
+                break;
+            }
+            else{
+                arr2.push(j-8);
+            }
         }
         j=j-8;
     }
     j=i;
     while(j<64){
         if(j+8<64){
-            arr2.push(j+8);
+            if(arr[j+8]>0){
+                break;
+            }
+            else if(arr[j+8]<0){
+                arr2.push(j+8);
+                break;
+            }
+            else{
+                arr2.push(j+8);
+            }
         }
         j=j+8;
     }
     j=i;
     while(j>-1 && j%8!=0){
         if(j>-1 && j%8!=0){
-            arr2.push(j-1);
+            if(arr[j-1]>0){
+                break;
+            }
+            else if(arr[j-1]<0){
+                arr2.push(j-1);
+                break;
+            }
+            else{
+                arr2.push(j-1);
+            }
         }
         j=j-1;
     }
     j=i;
     while(j<64 && (j+1)%8!=0){
         if(j<64 && (j+1)%8!=0){
-            arr2.push(j+1);
+            if(arr[j+1]>0){
+                break;
+            }
+            else if(arr[j+1]<0){
+                arr2.push(j+1);
+                break;
+            }
+            else{
+                arr2.push(j+1);
+            }
         }
         j=j+1;
     }
     j=i;
     while(j>-1 && j%8!=0 && j-9>-1){
         if(j>-1 && j%8!=0){
-            arr2.push(j-9);
+            if(arr[j-9]>0){
+                break;
+            }
+            else if(arr[j-9]<0){
+                arr2.push(j-9);
+                break;
+            }
+            else{
+                arr2.push(j-9);
+            }
         }
         j=j-9;
     }
     j=i;
     while(j>-1 && (j+1)%8!=0 && j-7>-1){
         if(j>-1 && (j+1)%8!=0){
-            arr2.push(j-7);
+            if(arr[j-7]>0){
+                break;
+            }
+            else if(arr[j-7]<0){
+                arr2.push(j-7);
+                break;
+            }
+            else{
+                arr2.push(j-7);
+            }
         }
         j=j-7;
     }
     j=i;
     while(j<64 && j%8!=0 && j+7<64){
         if(j<64 && j%8!=0){
-            arr2.push(j+7);
+            if(arr[j+7]>0){
+                break;
+            }
+            else if(arr[j+7]<0){
+                arr2.push(j+7);
+                break;
+            }
+            else{
+                arr2.push(j+7);
+            }
         }
         j=j+7;
     }
-    j=i;
+    j=i;console.log(j);
     while(j<64 && (j+1)%8!=0 && j+9<64){
-        if(j<64 && j%8!=0){
-            arr2.push(j+9);
+        if(j<64 && (j+1)%8!=0){
+            if(arr[j+9]>0){
+                break;
+            }
+            else if(arr[j+9]<0){
+                arr2.push(j+9);
+                break;
+            }
+            else{
+                arr2.push(j+9);
+            }
         }
         j=j+9;
     }
+
     return arr2;
 }
 function knight(i){

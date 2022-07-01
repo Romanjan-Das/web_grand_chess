@@ -6,3 +6,6 @@
     width: 64px; height: 64px; border-right: 1px black solid; border-bottom: 1px black solid; font-size: smaller;
     display: flex;align-items: center;justify-content: center; cursor: pointer; background-color: transparent;
 }
+.chess_piece{
+    width: 90%; height: 90%;
+}

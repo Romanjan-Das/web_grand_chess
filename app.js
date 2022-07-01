@@ -8,16 +8,20 @@ function create_board(){
     var i;
     for(i=0;i<64;i++){
         var j=document.createElement("div");
+        var img=document.createElement("img");
+        img.setAttribute("class","chess_piece");
+        img.setAttribute("id","img_"+i);
         j.setAttribute("class","box");
         j.setAttribute("id","box_"+i);
         j.setAttribute("onclick","select("+i+");");
+        j.appendChild(img);
         board.appendChild(j);
     }
 }
 function populate_board(){
     var i;
     for(i=0;i<64;i++){
-        document.getElementById("box_"+i).innerHTML=arr[i];
+        document.getElementById("img_"+i).setAttribute("src","assets/"+arr[i]+".png");
     }
 }
 var move; var chosen=false; var prev;
@@ -354,7 +358,7 @@ function queen(i){
         }
         j=j+7;
     }
-    j=i;console.log(j);
+    j=i;
     while(j<64 && (j+1)%8!=0 && j+9<64){
         if(j<64 && (j+1)%8!=0){
             if(arr[j+9]>0){

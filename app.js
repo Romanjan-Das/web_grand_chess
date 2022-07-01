@@ -48,6 +48,11 @@ function select(i){
             chosen=true;
             prev=i;
         }
+        else if(arr[i]==3){
+            move=knight(i);
+            chosen=true;
+            prev=i;
+        }
 
         for(j=0;j<move.length;j++){
             console.log(move[j]);
@@ -210,5 +215,33 @@ function queen(i){
         j=j+9;
     }
     console.log(arr2);
+    return arr2;
+}
+function knight(i){
+    var arr2=[];
+    if(i>15 && i%8!=0){
+        arr2.push(i-17);
+    }
+    if(i>15 && (i+1)%8!=0){
+        arr2.push(i-15);
+    }
+    if(i>7 && (i-1)%8!=0 && i%8!=0){
+        arr2.push(i-10);
+    }
+    if(i<56 && (i-1)%8!=0 && i%8!=0){
+        arr2.push(i+6);
+    }
+    if(i<48 && i%8!=0){
+        arr2.push(i+15);
+    }
+    if(i<48 && (i+1)%8!=0){
+        arr2.push(i+17);
+    }
+    if(i<56 && (i+1)%8!=0 && (i+2)%8!=0){
+        arr2.push(i+10);
+    }
+    if(i>7 && (i+1)%8!=0 && (i+2)%8!=0){
+        arr2.push(i-6);
+    }
     return arr2;
 }

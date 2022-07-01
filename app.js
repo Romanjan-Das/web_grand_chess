@@ -32,6 +32,12 @@ function select(i){
             chosen=true;
             prev=i;
         }
+        else if(arr[i]==4){
+            move=rook(i);
+            chosen=true;
+            prev=i;
+        }
+
         for(j=0;j<move.length;j++){
             console.log(move[j]);
         }
@@ -64,4 +70,26 @@ function pawn(i){
     else{
         return [i-8];
     }
+}
+function rook(i){
+    var arr2=[];
+    var j=i;
+    while(j>-1){
+        if(j-8>-1){
+            arr2.push(j-8);
+        }
+        j=j-8;
+    }
+
+    j=i;
+    while(j<64){
+        if(j+8<64){
+            arr2.push(j+8);
+        }
+        j=j+8;
+    }
+    
+    
+    console.log(arr2);
+    return arr2;
 }

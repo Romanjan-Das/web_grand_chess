@@ -1,0 +1,8 @@
+#board{
+    width: 520px; height: 520px; border-left: 1px black solid; border-top: 1px black solid;
+    display: inline-flex; flex-wrap: wrap;background-image: url("assets/board.png");
+}
+.box{
+    width: 64px; height: 64px; border-right: 1px black solid; border-bottom: 1px black solid; font-size: smaller;
+    display: flex;align-items: center;justify-content: center; cursor: pointer; background-color: transparent;
+}

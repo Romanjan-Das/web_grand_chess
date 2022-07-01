@@ -54,6 +54,9 @@ function select(i){
 
         for(j=0;j<move.length;j++){
             document.getElementById("box_"+move[j]).style.backgroundColor="cyan";
+            if(arr[move[j]]<0){
+                document.getElementById("box_"+move[j]).style.backgroundColor="magenta";
+            }
         }
     }
     else{
@@ -91,10 +94,10 @@ function reset_board_colours(){
 }
 function pawn(i){
     var arr2=[];
-    if(i>47 && arr[i-16]<=0){
+    if(i>47 && arr[i-16]==0 && arr[i-8]==0){
         arr2=[i-8,i-16];
     }
-    else if(i>7 && arr[i-8]<=0){
+    else if(i>7 && arr[i-8]==0){
         arr2=[i-8];
     }
     else{

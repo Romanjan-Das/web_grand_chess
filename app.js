@@ -22,6 +22,7 @@ function populate_board(){
 }
 var move; var chosen=false; var prev;
 function select(i){
+    var l=0;
     if(!chosen){
         if(arr[i]>0 && i!=prev){
             document.getElementById("box_"+i).style.backgroundColor="yellow";
@@ -37,9 +38,15 @@ function select(i){
             chosen=true;
             prev=i;
         }
+        else if(arr[i]==2){
+            move=bishop(i);
+            chosen=true;
+            prev=i;
+        }
 
         for(j=0;j<move.length;j++){
             console.log(move[j]);
+            document.getElementById("box_"+move[j]).style.backgroundColor="cyan";
         }
     }
     else{
@@ -50,12 +57,16 @@ function select(i){
                 chosen=false;
                 arr[i]=arr[prev];
                 arr[prev]=0;
-                document.getElementById("box_"+prev).style.backgroundColor="transparent";
+                for(l=0;l<64;l++){
+                    document.getElementById("box_"+l).style.backgroundColor="transparent";
+                }
                 populate_board();
                 break;
             }
             else if(i==prev){
-                document.getElementById("box_"+i).style.backgroundColor="transparent";
+                for(l=0;l<64;l++){
+                    document.getElementById("box_"+l).style.backgroundColor="transparent";
+                }
                 chosen=false;
             }
         }
@@ -80,7 +91,6 @@ function rook(i){
         }
         j=j-8;
     }
-
     j=i;
     while(j<64){
         if(j+8<64){
@@ -88,7 +98,6 @@ function rook(i){
         }
         j=j+8;
     }
-    
     j=i;
     while(j>-1 && j%8!=0){
         if(j>-1 && j%8!=0){
@@ -96,7 +105,6 @@ function rook(i){
         }
         j=j-1;
     }
-
     j=i;
     while(j<64 && (j+1)%8!=0){
         if(j<64 && (j+1)%8!=0){
@@ -104,7 +112,38 @@ function rook(i){
         }
         j=j+1;
     }
-    
+    return arr2;
+}
+function bishop(i){
+    var arr2=[];
+    var j=i;
+    while(j>-1 && j%8!=0 && j-9>-1){
+        if(j>-1 && j%8!=0){
+            arr2.push(j-9);
+        }
+        j=j-9;
+    }
+    j=i;
+    while(j>-1 && (j+1)%8!=0 && j-7>-1){
+        if(j>-1 && (j+1)%8!=0){
+            arr2.push(j-7);
+        }
+        j=j-7;
+    }
+    j=i;
+    while(j<64 && j%8!=0 && j+7<64){
+        if(j<64 && j%8!=0){
+            arr2.push(j+7);
+        }
+        j=j+7;
+    }
+    j=i;
+    while(j<64 && (j+1)%8!=0 && j+9<64){
+        if(j<64 && j%8!=0){
+            arr2.push(j+9);
+        }
+        j=j+9;
+    }
     console.log(arr2);
     return arr2;
 }

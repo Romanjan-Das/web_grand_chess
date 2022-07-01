@@ -115,28 +115,64 @@ function rook(i){
     var j=i;
     while(j>-1){
         if(j-8>-1){
-            arr2.push(j-8);
+            if(arr[j-8]>0){
+                break;
+            }
+            else if(arr[j-8]<0){
+                arr2.push(j-8);
+                break;
+            }
+            else{
+                arr2.push(j-8);
+            }
         }
         j=j-8;
     }
     j=i;
     while(j<64){
         if(j+8<64){
-            arr2.push(j+8);
+            if(arr[j+8]>0){
+                break;
+            }
+            else if(arr[j+8]<0){
+                arr2.push(j+8);
+                break;
+            }
+            else{
+                arr2.push(j+8);
+            }
         }
         j=j+8;
     }
     j=i;
     while(j>-1 && j%8!=0){
         if(j>-1 && j%8!=0){
-            arr2.push(j-1);
+            if(arr[j-1]>0){
+                break;
+            }
+            else if(arr[j-1]<0){
+                arr2.push(j-1);
+                break;
+            }
+            else{
+                arr2.push(j-1);
+            }
         }
         j=j-1;
     }
     j=i;
     while(j<64 && (j+1)%8!=0){
         if(j<64 && (j+1)%8!=0){
-            arr2.push(j+1);
+            if(arr[j+1]>0){
+                break;
+            }
+            else if(arr[j+1]<0){
+                arr2.push(j+1);
+                break;
+            }
+            else{
+                arr2.push(j+1);
+            }
         }
         j=j+1;
     }

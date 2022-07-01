@@ -53,9 +53,13 @@ function select(i){
             chosen=true;
             prev=i;
         }
+        else if(arr[i]==6){
+            move=king(i);
+            chosen=true;
+            prev=i;
+        }
 
         for(j=0;j<move.length;j++){
-            console.log(move[j]);
             document.getElementById("box_"+move[j]).style.backgroundColor="cyan";
         }
     }
@@ -63,7 +67,6 @@ function select(i){
         var k=0;
         for(k=0;k<move.length;k++){
             if(i==move[k]){
-                console.log(i);
                 chosen=false;
                 arr[i]=arr[prev];
                 arr[prev]=0;
@@ -214,7 +217,6 @@ function queen(i){
         }
         j=j+9;
     }
-    console.log(arr2);
     return arr2;
 }
 function knight(i){
@@ -242,6 +244,34 @@ function knight(i){
     }
     if(i>7 && (i+1)%8!=0 && (i+2)%8!=0){
         arr2.push(i-6);
+    }
+    return arr2;
+}
+function king(i){
+    var arr2=[];
+    if(i<56){
+        arr2.push(i+8);
+    }
+    if((i+1)%8!=0 && i<64){
+        arr2.push(i+1);
+    }
+    if((i+1)%8!=0 && i<56){
+        arr2.push(i+9);
+    }
+    if(i%8!=0 && i<56){
+        arr2.push(i+7);
+    }
+    if(i>7){
+        arr2.push(i-8);
+    }
+    if(i%8!=0 && i>0){
+        arr2.push(i-1);
+    }
+    if(i>7 && i%8!=0){
+        arr2.push(i-9);
+    }
+    if((i+1)%8!=0 && i>7){
+        arr2.push(i-7);
     }
     return arr2;
 }

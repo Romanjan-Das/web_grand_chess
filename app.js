@@ -409,28 +409,28 @@ function knight(i){
 }
 function king(i){
     var arr2=[];
-    if(i<56){
+    if(i<56 && arr[i+8]<=0){
         arr2.push(i+8);
     }
-    if((i+1)%8!=0 && i<64){
+    if((i+1)%8!=0 && i<64 && arr[i+1]<=0){
         arr2.push(i+1);
     }
-    if((i+1)%8!=0 && i<56){
+    if((i+1)%8!=0 && i<56 && arr[i+9]<=0){
         arr2.push(i+9);
     }
-    if(i%8!=0 && i<56){
+    if(i%8!=0 && i<56 && arr[i+7]<=0){
         arr2.push(i+7);
     }
-    if(i>7){
+    if(i>7 && arr[i-8]<=0){
         arr2.push(i-8);
     }
-    if(i%8!=0 && i>0){
+    if(i%8!=0 && i>0 && arr[i-1]<=0){
         arr2.push(i-1);
     }
-    if(i>7 && i%8!=0){
+    if(i>7 && i%8!=0 && arr[i-9]<=0){
         arr2.push(i-9);
     }
-    if((i+1)%8!=0 && i>7){
+    if((i+1)%8!=0 && i>7 && arr[i-7]<=0){
         arr2.push(i-7);
     }
     return arr2;

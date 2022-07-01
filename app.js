@@ -89,6 +89,21 @@ function rook(i){
         j=j+8;
     }
     
+    j=i;
+    while(j>-1 && j%8!=0){
+        if(j>-1 && j%8!=0){
+            arr2.push(j-1);
+        }
+        j=j-1;
+    }
+
+    j=i;
+    while(j<64 && (j+1)%8!=0){
+        if(j<64 && (j+1)%8!=0){
+            arr2.push(j+1);
+        }
+        j=j+1;
+    }
     
     console.log(arr2);
     return arr2;

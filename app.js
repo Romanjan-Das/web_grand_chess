@@ -27,7 +27,7 @@ function populate_board(){
 var move; var chosen=false; var prev;
 function select(i){
     if(!chosen){
-        if(arr[i]>0 && i!=prev){
+        if(arr[i]>0){
             document.getElementById("box_"+i).style.backgroundColor="yellow";
         }
 

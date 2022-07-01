@@ -43,6 +43,11 @@ function select(i){
             chosen=true;
             prev=i;
         }
+        else if(arr[i]==5){
+            move=queen(i);
+            chosen=true;
+            prev=i;
+        }
 
         for(j=0;j<move.length;j++){
             console.log(move[j]);
@@ -117,6 +122,66 @@ function rook(i){
 function bishop(i){
     var arr2=[];
     var j=i;
+    while(j>-1 && j%8!=0 && j-9>-1){
+        if(j>-1 && j%8!=0){
+            arr2.push(j-9);
+        }
+        j=j-9;
+    }
+    j=i;
+    while(j>-1 && (j+1)%8!=0 && j-7>-1){
+        if(j>-1 && (j+1)%8!=0){
+            arr2.push(j-7);
+        }
+        j=j-7;
+    }
+    j=i;
+    while(j<64 && j%8!=0 && j+7<64){
+        if(j<64 && j%8!=0){
+            arr2.push(j+7);
+        }
+        j=j+7;
+    }
+    j=i;
+    while(j<64 && (j+1)%8!=0 && j+9<64){
+        if(j<64 && j%8!=0){
+            arr2.push(j+9);
+        }
+        j=j+9;
+    }
+    return arr2;
+}
+function queen(i){
+    var arr2=[];
+    var j=i;
+    while(j>-1){
+        if(j-8>-1){
+            arr2.push(j-8);
+        }
+        j=j-8;
+    }
+    j=i;
+    while(j<64){
+        if(j+8<64){
+            arr2.push(j+8);
+        }
+        j=j+8;
+    }
+    j=i;
+    while(j>-1 && j%8!=0){
+        if(j>-1 && j%8!=0){
+            arr2.push(j-1);
+        }
+        j=j-1;
+    }
+    j=i;
+    while(j<64 && (j+1)%8!=0){
+        if(j<64 && (j+1)%8!=0){
+            arr2.push(j+1);
+        }
+        j=j+1;
+    }
+    j=i;
     while(j>-1 && j%8!=0 && j-9>-1){
         if(j>-1 && j%8!=0){
             arr2.push(j-9);

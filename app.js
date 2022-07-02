@@ -103,6 +103,7 @@ function select(i){
                     populate_board();
                     chosen=false;
                     move=[];
+                    ai();
                     break;
                 }
                 else if(i==prev){
@@ -503,4 +504,39 @@ function reset_board_colours(){
     for(l=0;l<64;l++){
         document.getElementById("box_"+l).style.backgroundColor="transparent";
     }
+}
+
+function ai(){
+    var x; var y=[]; var z; var u; var v; var w=[]; var p=1000;
+    var t; var tv=0; //total value
+    var s; var r; var q;
+    for(x=0;x<64;x++){
+        select(x);y.push([x,move]);select(x);
+    }
+    for(x=0;x<64;x++){
+        for(z=1;z<y[x].length;z++){
+            u=y[x];
+            for(v=0;v<u[1].length;v++){
+                s=arr[u[1][v]]; r=arr[x]; arr[u[1][v]]=arr[x]; arr[x]=0;
+                for(t=0;t<64;t++){
+                    tv=tv+arr[t];
+                }
+                arr[u[1][v]]=s; arr[x]=r;
+                w.push([x,u[1][v],tv]);
+                tv=0;
+            }
+        }
+    }
+    for(x=0;x<w.length;x++){
+        console.log(w[x]);
+        if(arr[w[x][0]]<0 && w[x][2]<p){
+            p=w[x][2];
+            console.log("p:"+p);
+            q=[w[x][0],w[x][1],w[x][2]];
+            console.log("q:"+q);
+        }
+    }
+    console.log("q:"+q);
+    arr[q[1]]=arr[q[0]]; arr[q[0]]=0;
+    populate_board();
 }

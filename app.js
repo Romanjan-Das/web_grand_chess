@@ -26,7 +26,7 @@ function populate_board(){
 }
 var move; var chosen=false; var prev;
 function select(i){
-    if(!chosen){
+    if(!chosen){ var n;
         if(arr[i]>0 || arr[i]<0){
             document.getElementById("box_"+i).style.backgroundColor="yellow";
         }
@@ -96,16 +96,23 @@ function select(i){
         }
         else{
             for(k=0;k<move.length;k++){
-                if(i==move[k]){
+                if(i==move[k]){ n=arr[i];
                     arr[i]=arr[prev];
                     arr[prev]=0;
                     reset_board_colours();
                     populate_board();
                     chosen=false;
                     move=[];
-                    setTimeout(() => {
-                        ai();
-                    }, 1000);
+                    if(n==-6){
+                        setTimeout(() => {
+                            victory_message();
+                        }, 1000);
+                    }
+                    else{
+                        setTimeout(() => {
+                            ai();
+                        }, 1000);
+                    }
                     break;
                 }
                 else if(i==prev){
@@ -511,7 +518,7 @@ function reset_board_colours(){
 function ai(){
     var x; var y=[]; var z; var u; var v; var w=[]; var p=1000;
     var t; var tv=0; //total value
-    var s; var r; var q; var n=-1000;
+    var s; var r; var q; var n;
     for(x=0;x<64;x++){
         select(x);y.push([x,move]);select(x);
     }
@@ -535,6 +542,18 @@ function ai(){
                 q=[w[x][0],w[x][1],w[x][2]];
         }
     }
+    n=arr[q[1]];
     arr[q[1]]=arr[q[0]]; arr[q[0]]=0;
     populate_board();
+    if(n==6){
+        setTimeout(() => {
+            defeat_message();
+        }, 1000);
+    }
+}
+function victory_message(){
+    window.alert("Hurray! You win!!");
+}
+function defeat_message(){
+    window.alert("Game Over. Blacks win!!");
 }

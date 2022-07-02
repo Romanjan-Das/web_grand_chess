@@ -1,11 +1,24 @@
+body{
+    padding: 0px; margin: 0px;
+}
 #board{
-    width: 520px; height: 520px; border-left: 1px black solid; border-top: 1px black solid;
+    width: 512px; height: 512px;
     display: inline-flex; flex-wrap: wrap;background-image: url("assets/board.png");
 }
 .box{
-    width: 64px; height: 64px; border-right: 1px black solid; border-bottom: 1px black solid; font-size: smaller;
+    width: 64px; height: 64px; font-size: smaller;
     display: flex;align-items: center;justify-content: center; cursor: pointer; background-color: transparent;
 }
 .chess_piece{
     width: 90%; height: 90%;
+}
+@media (orientation:landscape) {
+    body{
+        display: flex; height: 90vh; align-items: center; justify-content: center;
+    }
+}
+@media (orientation:portrait){
+    body{
+        height: 100vh; padding-top: 40%;
+    }
 }

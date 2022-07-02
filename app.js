@@ -103,7 +103,9 @@ function select(i){
                     populate_board();
                     chosen=false;
                     move=[];
-                    ai();
+                    setTimeout(() => {
+                        ai();
+                    }, 1000);
                     break;
                 }
                 else if(i==prev){
@@ -509,7 +511,7 @@ function reset_board_colours(){
 function ai(){
     var x; var y=[]; var z; var u; var v; var w=[]; var p=1000;
     var t; var tv=0; //total value
-    var s; var r; var q;
+    var s; var r; var q; var n=-1000;
     for(x=0;x<64;x++){
         select(x);y.push([x,move]);select(x);
     }
@@ -528,15 +530,11 @@ function ai(){
         }
     }
     for(x=0;x<w.length;x++){
-        console.log(w[x]);
-        if(arr[w[x][0]]<0 && w[x][2]<p){
-            p=w[x][2];
-            console.log("p:"+p);
-            q=[w[x][0],w[x][1],w[x][2]];
-            console.log("q:"+q);
+        if(arr[w[x][0]]<0 && w[x][2]<=p){
+                p=w[x][2];
+                q=[w[x][0],w[x][1],w[x][2]];
         }
     }
-    console.log("q:"+q);
     arr[q[1]]=arr[q[0]]; arr[q[0]]=0;
     populate_board();
 }
